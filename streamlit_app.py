@@ -28,13 +28,14 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if prompt := st.chat_input("What is up?"):
+    st.session_state.messages.insert(0, {"role": "system", "content": pre_message_to_openai})
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
         full_response = ""
-        st.session_state.messages.insert(0, {"role" :"system" , "content" :pre_message_to_openai})
+
         for response in openai.ChatCompletion.create(
             model=MODEL,
             messages=[{"role": m["role"], "content": m["content"]}
