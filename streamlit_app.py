@@ -12,6 +12,7 @@ pre_message_to_openai = ('For all of the following message, the message is an em
                          'IT = responsible for computer problems, system updates etc.')
 
 MODEL = "gpt-3.5-turbo"
+st.session_state.messages.insert(0, {"role": "system", "content": pre_message_to_openai})
 
 with st.sidebar:
     st.title('Payoneer email bot')
@@ -33,7 +34,6 @@ for message in st.session_state.messages[1:]:
         st.markdown(message["content"])
 
 if prompt := st.chat_input("What is up?"):
-    st.session_state.messages.insert(0, {"role": "system", "content": pre_message_to_openai})
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
