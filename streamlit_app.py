@@ -4,7 +4,12 @@ import streamlit as st
 
 mail_types = "SRE,IT,Cyber,Data"
 pre_message_to_openai = ('For all of the following message, the message is an email, and i want you to classify it. your response should '
-                       f'be 1 word from the following set: {mail_types} ')
+                       f'be 1 word from the following set: {mail_types} ' 
+                         'and we have the following definition of each type: '
+                         'SRE = Site reliability engineering responsible for infrastructures, rabbit queues, etc '
+                         'Cyper = cyber security, manages finishing mails and grant access to installing programs'
+                         'Data = responsible for databases, SQL,Mongo,Elastic etc. '
+                         'IT = responsible for computer problems, system updates etc.')
 
 MODEL = "gpt-3.5-turbo"
 
