@@ -42,5 +42,4 @@ if prompt := st.chat_input("What is up?"):
             full_response += response.choices[0].delta.get("content", "")
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
-        full_response += st.session_state.messages[0] +'\n'
     st.session_state.messages.append({"role": "assistant", "content": full_response})
