@@ -9,7 +9,7 @@ pre_message_to_openai = ('For all of the following message, the message is an em
 MODEL = "gpt-3.5-turbo"
 
 with st.sidebar:
-    st.title('Eran&Slava&Liad chat-bot-test')
+    st.title('Payoneer email bot')
     if 'OPENAI_API_KEY' in st.secrets:
         st.success('API key already provided!', icon='✅')
         openai.api_key = st.secrets['OPENAI_API_KEY']
