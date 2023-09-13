@@ -34,7 +34,7 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
         full_response = ""
-        st.session_state.messages.append(0, {"role" :"system" , "content" :'For all of the following message, the message is an email, and i want you to classify it. your response should '
+        st.session_state.messages.insert(0, {"role" :"system" , "content" :'For all of the following message, the message is an email, and i want you to classify it. your response should '
                        f'be 1 word from the following set: {mail_types} '})
         for response in openai.ChatCompletion.create(
             model=MODEL,
