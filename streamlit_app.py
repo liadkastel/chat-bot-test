@@ -1,6 +1,12 @@
-
 import openai
 import streamlit as st
+
+
+mail_types = "SRE,IT,Cyber,Data"
+pre_message_to_openai = ('For all of the following message, the message is an email, and i want you to classify it. your response should '
+                       f'be 1 word from the following set: {mail_types} ')
+
+MODEL = "gpt-3.5-turbo"
 
 with st.sidebar:
     st.title('Eran&Slava&Liad chat-bot-test')
@@ -28,11 +34,13 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
         full_response = ""
+        st.session_state.messages.append(0, {"role" :"system" , "content" :pre_message_to_openai})
         for response in openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model=MODEL,
             messages=[{"role": m["role"], "content": m["content"]}
                       for m in st.session_state.messages], stream=True):
             full_response += response.choices[0].delta.get("content", "")
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
+        full_response += st.session_state.messages[0] +'\n'
     st.session_state.messages.append({"role": "assistant", "content": full_response})
