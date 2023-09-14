@@ -8,7 +8,7 @@ pre_message_to_openai = ('im sending you a history  of transactions and the last
 MODEL = "gpt-3.5-turbo"
 
 with st.sidebar:
-    st.title('🤖💬 OpenAI Chatbot')
+    st.title('Payoneer chatbot for finding fraud transactions ')
     st.success('API key already provided!', icon='✅')
     openai.api_key = st.secrets['OPENAI_API_KEY']
 
