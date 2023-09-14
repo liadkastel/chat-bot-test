@@ -12,7 +12,6 @@ with st.sidebar:
     st.success('API key already provided!', icon='✅')
     openai.api_key = st.secrets['OPENAI_API_KEY']
 
-
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
